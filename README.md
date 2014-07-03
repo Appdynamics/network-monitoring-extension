@@ -70,24 +70,24 @@ echo "name=TCP|State|Listen,value=" `netstat -an | grep -i LISTEN | wc -l`
 Metric path is typically: **Application Infrastructure Performance|\<Tier\>|Custom Metrics|Network|** followed by the individual metrics below:
 
 ###Network Interface
-**Note: <network_interface> is replaced with the actual network interface name, e.g eth0**
+**Note: \<network_interface\> is replaced with the actual network interface name, e.g eth0**
 
 | Metric | Description |
 | ----- | ----- |
-| <network_interface>&#124;RX Bytes | |
-| <network_interface>&#124;RX Dropped | |
-| <network_interface>&#124;RX Errors | |
-| <network_interface>&#124;RX Frame | |
-| <network_interface>&#124;RX Overruns | |
-| <network_interface>&#124;RX Packets | |
-| <network_interface>&#124;Speed | |
-| <network_interface>&#124;TX Bytes | |
-| <network_interface>&#124;TX Carrier | |
-| <network_interface>&#124;TX Collision | |
-| <network_interface>&#124;TX Dropped | |
-| <network_interface>&#124;TX Errors | |
-| <network_interface>&#124;TX Overruns | |
-| <network_interface>&#124;TX Packets | |
+| \<network_interface\>&#124;RX Bytes | |
+| \<network_interface\>&#124;RX Dropped | |
+| \<network_interface\>&#124;RX Errors | |
+| \<network_interface\>&#124;RX Frame | |
+| \<network_interface\>&#124;RX Overruns | |
+| \<network_interface\>&#124;RX Packets | |
+| \<network_interface\>&#124;Speed | |
+| \<network_interface\>&#124;TX Bytes | |
+| \<network_interface\>&#124;TX Carrier | |
+| \<network_interface\>&#124;TX Collision | |
+| \<network_interface\>&#124;TX Dropped | |
+| \<network_interface\>&#124;TX Errors | |
+| \<network_interface\>&#124;TX Overruns | |
+| \<network_interface\>&#124;TX Packets | |
 
 ###TCP
 | Metric | Description |
@@ -131,7 +131,7 @@ Metric path is typically: **Application Infrastructure Performance|\<Tier\>|Cust
 ##Platform Tested
 
 | Platform | Version |
-| ----- | |
+| ----- | ----- |
 | Ubuntu | 12.04 LTS |
 | Windows | 7 |
 | Mac OSX | 10.9.1 |
