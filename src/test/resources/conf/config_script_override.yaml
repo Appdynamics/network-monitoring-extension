@@ -1,0 +1,15 @@
+networkInterfaces: [ eth1
+]
+
+overrideMetricsUsingScriptFile: true
+
+scriptTimeoutInSec: 60
+
+scriptFiles:
+  - osType: windows
+    filePath: target/test-classes/scripts/windows-metrics.bat
+  - osType: unixBase
+    filePath: target/test-classes/scripts/unix-base-metrics.sh
+
+metricPrefix:  "Custom Metrics|Network|"
+

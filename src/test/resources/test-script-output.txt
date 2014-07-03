@@ -1,0 +1,44 @@
+name=lo0|RX Bytes,value=1302370
+name=lo0|RX Dropped,value=1
+name=lo0|RX Errors,value=3
+name=lo0|RX Frame,value=2
+name=lo0|RX Overruns,value=-1
+name=lo0|RX Packets,value=9974
+name=lo0|Speed,value=4
+name=lo0|TX Bytes,value=1302375
+name=lo0|TX Carrier,value=-2
+name=lo0|TX Collision,value=5
+name=lo0|TX Dropped,value=-7
+name=lo0|TX Errors,value=6
+name=lo0|TX Overruns,value=-8
+name=lo0|TX Packets,value=10974
+
+name=TCP|Active Opens,value=7899
+name=TCP|Attempt Fails,value=213
+name=TCP|Conn Established,value=60
+name=TCP|Resets Received,value=343
+name=TCP|Bad Segments,value=33
+name=TCP|Segments Received,value=519887
+name=TCP|Inbound Total,value=5.5
+name=TCP|Resets Sent,value=-10
+name=TCP|Segments Sent,value=438235
+  NAME = | TCP | Outbound Total | , VALUE = 66  
+name=TCP|Passive Opens,value=218
+name=TCP|Segments Retransmitted,value=2263
+
+name=TCP|State|Bound,value=7
+name=TCP|State|Close Wait,value=8
+nAmE=TCP|State|Closed,vAlUe=-1
+name=TCP|State|Closing,value=5
+name=TCP|State|Establised,value=52
+name=TCP|State|Fin Wait1,value=15
+name=TCP|State|Fin Wait2,value=12
+name=TCP|State|Idle,value=14                                                                                                                                                 
+name=TCP|State|Last Ack,value=1.1
+name=TCP|State|Listen,value=11
+name=TCP|State|Syn Recv,value=16
+name=TCP|State|Syn Sent,value=13
+name=TCP|State|Time Wait,value=6
+
+name=ALL INBOUND TOTAL,value=17
+name=All Outbound Total,value=66

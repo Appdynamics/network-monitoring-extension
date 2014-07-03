@@ -1,0 +1,15 @@
+networkInterfaces: [
+]
+
+overrideMetricsUsingScriptFile: false
+
+scriptTimeoutInSec: 60
+
+scriptFiles:
+  - osType: windows
+    filePath: monitors/NetworkMonitor/scripts/windows-metrics.bat
+  - osType: unixBase
+    filePath: monitors/NetworkMonitor/scripts/unix-base-metrics.sh
+
+metricPrefix:  "Custom Metrics|Network|"
+
