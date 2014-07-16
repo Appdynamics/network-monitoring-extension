@@ -51,6 +51,11 @@ metricPrefix:  "Custom Metrics|Network|"
 ###Script File
 There maybe cases where Sigar doesn't work on your environment or you've a preferred way of retrieving the metrics. In any case, you have the flexibility to override some or all metrics using scripting.
 
+There are two script templates provided:
+
+1. unix-base-metrics.sh for non-windows environment
+2. windows-metrics.bat for windows environment
+
 Update the relevant script template by uncommenting out the metrics you wish to override and provide the value.
 
 Below is an example override on some TCP State metrics in unix-base-metrics.sh:
@@ -74,59 +79,59 @@ Metric path is typically: **Application Infrastructure Performance|\<Tier\>|Cust
 
 | Metric | Description |
 | ----- | ----- |
-| \<network_interface\>&#124;RX Bytes | |
-| \<network_interface\>&#124;RX Dropped | |
-| \<network_interface\>&#124;RX Errors | |
-| \<network_interface\>&#124;RX Frame | |
-| \<network_interface\>&#124;RX Overruns | |
-| \<network_interface\>&#124;RX Packets | |
-| \<network_interface\>&#124;Speed | |
-| \<network_interface\>&#124;TX Bytes | |
-| \<network_interface\>&#124;TX Carrier | |
-| \<network_interface\>&#124;TX Collision | |
-| \<network_interface\>&#124;TX Dropped | |
-| \<network_interface\>&#124;TX Errors | |
-| \<network_interface\>&#124;TX Overruns | |
-| \<network_interface\>&#124;TX Packets | |
+| \<network_interface\>&#124;RX Bytes | The total bytes received |
+| \<network_interface\>&#124;RX Dropped | The number of dropped packets due to reception errors |
+| \<network_interface\>&#124;RX Errors | The number of damaged packets received |
+| \<network_interface\>&#124;RX Frame | The number received packets that experienced frame errors |
+| \<network_interface\>&#124;RX Overruns | The number of received packets that experienced data overruns |
+| \<network_interface\>&#124;RX Packets | The number of packets received |
+| \<network_interface\>&#124;Speed | The speed in bits per second |
+| \<network_interface\>&#124;TX Bytes | The total bytes transmitted |
+| \<network_interface\>&#124;TX Carrier | The number received packets that experienced loss of carriers |
+| \<network_interface\>&#124;TX Collision | The number of transmitted packets that experienced Ethernet collisions |
+| \<network_interface\>&#124;TX Dropped | The number of dropped transmitted packets due to transmission errors |
+| \<network_interface\>&#124;TX Errors | The number of packets that experienced transmission error |
+| \<network_interface\>&#124;TX Overruns | The number of transmitted packets that experienced data overruns |
+| \<network_interface\>&#124;TX Packets | The number of packets transmitted |
 
 ###TCP
 | Metric | Description |
 | ----- | ----- |
-| TCP&#124;Active Opens | |
-| TCP&#124;Attempt Fails | |
-| TCP&#124;Conn Established | |
-| TCP&#124;Resets Received | |
-| TCP&#124;Bad Segments | |
-| TCP&#124;Segments Received | |
-| TCP&#124;Inbound Total | |
-| TCP&#124;Resets Sent | |
-| TCP&#124;Segments Sent | |
-| TCP&#124;Outbound Total | |
-| TCP&#124;Passive Opens | |
-| TCP&#124;Segments Retransmitted | |
+| TCP&#124;Active Opens | The number of active opens |
+| TCP&#124;Attempt Fails | The number of attempted connection failed |
+| TCP&#124;Conn Established | The number of connection established |
+| TCP&#124;Resets Received | The number of resets received |
+| TCP&#124;Bad Segments | The number of bad segments |
+| TCP&#124;Segments Received | The number of segments received |
+| TCP&#124;Inbound Total | Total number of TCP inbound connections |
+| TCP&#124;Resets Sent | The number of resets sent |
+| TCP&#124;Segments Sent | The number of segments sent |
+| TCP&#124;Outbound Total | Total number of TCP outbound connections |
+| TCP&#124;Passive Opens | The number of passive opens |
+| TCP&#124;Segments Retransmitted | The number of segments retransmitted |
 
 ###TCP State
 | Metric | Description |
 | ----- | ----- |
-| TCP&#124;State&#124;Bound | |
-| TCP&#124;State&#124;Close Wait | |
-| TCP&#124;State&#124;Closed | |
-| TCP&#124;State&#124;Closing | |
-| TCP&#124;State&#124;Establised | |
-| TCP&#124;State&#124;Fin Wait1 | |
-| TCP&#124;State&#124;Fin Wait2 | |
-| TCP&#124;State&#124;Idle | |
-| TCP&#124;State&#124;Last Ack | |
-| TCP&#124;State&#124;Listen | |
-| TCP&#124;State&#124;Syn Recv | |
-| TCP&#124;State&#124;Syn Sent | |
-| TCP&#124;State&#124;Time Wait | |
+| TCP&#124;State&#124;Bound | The number of bound connections |
+| TCP&#124;State&#124;Close Wait | The number of connections waiting for termination request from the local user |
+| TCP&#124;State&#124;Closed | The number of closed connections |
+| TCP&#124;State&#124;Closing | The number of connections waiting for termination acknowledgment |
+| TCP&#124;State&#124;Establised | The number of open connections |
+| TCP&#124;State&#124;Fin Wait1 | The number of connections waiting for termination requests from the remote TCP or acknowledgment of termination request previously sent |
+| TCP&#124;State&#124;Fin Wait2 | The number of connections waiting for termination requests from the remote TCP |
+| TCP&#124;State&#124;Idle | The number of connections in idle |
+| TCP&#124;State&#124;Last Ack | The number of connections waiting for lask acknowledgment of termination request sent to remote TCP |
+| TCP&#124;State&#124;Listen | The number of listening for connections |
+| TCP&#124;State&#124;Syn Recv | The number of confirming connection requests acknowledgment after having both received and sent a connection request |
+| TCP&#124;State&#124;Syn Sent | The number of waiting for a matching connection request after having sent a connection request |
+| TCP&#124;State&#124;Time Wait | The number of  connections waiting for enough time to pass to be sure the remote TCP received the acknowledgment of its connection termination request|
 
 ###Other
 | Metric | Description |
 | ----- | ----- |
-| All Inbound Total | |
-| All Outbound Total | |
+| All Inbound Total | Total number of incoming connections |
+| All Outbound Total | Total number of outgoing connections |
 
 ##Platform Tested
 
