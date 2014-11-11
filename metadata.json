@@ -13,7 +13,7 @@
                     "name" : "execution-style",
                     "displayName" : "Execution Style",
                     "defaultValue" : "periodic",
-                    "description" : "Choose periodic, if you want data to be reported from system performance counters periodically.Choose continuous, if you want data collection to be running continiously and averaged over time. ",
+                    "description" : "The data to be reported from system performance counters periodically.",
                     "isOptional" : false
                 },
                 {
