@@ -1,0 +1,41 @@
+{
+    "id" : "network-monitoring-extension",
+    "description" : "Network Monitoring Extension",
+    "version" : "1.0.0",
+    "repoLink" : "https://github.com/Appdynamics/network-monitoring-extension",
+    "downloadFilename" : "NetworkMonitor.zip",
+    "configs" : [
+        {
+            "name" : "monitor.xml",
+            "link" : "https://raw.githubusercontent.com/Appdynamics/network-monitoring-extension/master/src/main/resources/conf/monitor.xml",
+            "args" : [
+                {
+                    "name" : "execution-style",
+                    "displayName" : "Execution Style",
+                    "defaultValue" : "periodic",
+                    "description" : "Choose periodic, if you want data to be reported from system performance counters periodically.Choose continuous, if you want data collection to be running continiously and averaged over time. ",
+                    "isOptional" : false
+                },
+                {
+                    "name" : "execution-frequency-in-seconds",
+                    "displayName" : "Execution Frequency",
+                    "defaultValue" : "60",
+                    "description" : "Determines the execution frequency in seconds.",
+                    "isOptional" : false
+                },
+                {
+                    "name" : "execution-timeout-in-seconds",
+                    "displayName" : "Execution Timeout",
+                    "defaultValue" : "60",
+                    "description" : "Determines the execution timeout in seconds.",
+                    "isOptional" : false
+                }
+            ]
+        },
+        {
+            "name" : "config.yaml",
+            "link" : "https://raw.githubusercontent.com/Appdynamics/network-monitoring-extension/master/src/main/resources/conf/config.yaml"
+        }
+    ]
+
+}
