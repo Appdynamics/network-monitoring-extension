@@ -11,7 +11,7 @@ This extension only works with standalone machine agent.
 **Note : By default, the Machine agent and AppServer agent can only send a fixed number of metrics to the controller. To change this limit, please follow the instructions mentioned [here](http://docs.appdynamics.com/display/PRO14S/Metrics+Limits).**
 
 ##Installation
-1. To build from source, clone this repository and run 'mvn clean install'. This will produce a NetworkMonitor-VERSION.zip in the target directory. Alternatively, download the latest release archive from Github[https://github.com/Appdynamics/network-monitoring-extension/releases].
+1. To build from source, clone this repository and run 'mvn clean install'. This will produce a NetworkMonitor-VERSION.zip in the target directory. Alternatively, download the latest release archive from Github [https://github.com/Appdynamics/network-monitoring-extension/releases].
 2. Copy and unzip NetworkMonitor.zip from 'target' directory into \<machine_agent_dir\>/monitors/
 3. Edit config.yaml file and provide the required configuration (see Configuration section)
 4. Restart the Machine Agent.
@@ -154,7 +154,7 @@ Always feel free to fork and contribute any changes directly here on GitHub
 
 ##Community
 
-Find out more in the AppSphere[http://community.appdynamics.com/t5/eXchange-Community-AppDynamics/Network-Monitoring-Extension/idi-p/9497] community.
+Find out more in the AppSphere [http://community.appdynamics.com/t5/eXchange-Community-AppDynamics/Network-Monitoring-Extension/idi-p/9497] community.
 
 ##Support
 
