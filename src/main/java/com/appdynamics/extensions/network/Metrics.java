@@ -12,6 +12,7 @@ public enum Metrics {
 	
 	// Network card metrics
 	NIC_RX_BYTES("%s" + DEFAULT_DELIMETER + "RX Bytes"),
+    NIC_RX_KILOBYTES("%s" + DEFAULT_DELIMETER + "RX KB"),
 	NIC_RX_DROPPED("%s" + DEFAULT_DELIMETER + "RX Dropped"),
 	NIC_RX_ERRORS("%s" + DEFAULT_DELIMETER + "RX Errors"),
 	NIC_RX_FRAME("%s" + DEFAULT_DELIMETER + "RX Frame"),
@@ -19,6 +20,7 @@ public enum Metrics {
 	NIC_RX_PACKETS("%s" + DEFAULT_DELIMETER + "RX Packets"),
 	NIC_SPEED("%s" + DEFAULT_DELIMETER + "Speed"),
 	NIC_TX_BYTES("%s" + DEFAULT_DELIMETER + "TX Bytes"),
+    NIC_TX_KILOBYTES("%s" + DEFAULT_DELIMETER + "TX KB"),
 	NIC_TX_CARRIER("%s" + DEFAULT_DELIMETER + "TX Carrier"),
 	NIC_TX_COLLISIONS("%s" + DEFAULT_DELIMETER + "TX Collision"),
 	NIC_TX_DROPPED("%s" + DEFAULT_DELIMETER + "TX Dropped"),

@@ -106,7 +106,7 @@ public class NetworkMetricsCollector {
 	private void addRxBytesMetric(String netInterfaceName) {
 		BigInteger value = null;
 
-		String metricName = getFormattedMetricName(Metrics.NIC_RX_BYTES, netInterfaceName);
+		String metricName = getFormattedMetricName(Metrics.NIC_RX_KILOBYTES, netInterfaceName);
 
 		if (isInScriptMetrics(metricName)) {
 			value = scriptMetrics.getMetricValue(metricName);
@@ -115,7 +115,7 @@ public class NetworkMetricsCollector {
 			value = BigInteger.valueOf(sigarMetrics.getNetInterfaceStat(netInterfaceName).getRxBytes());
 		}
 
-		addMetric(metricName, value);
+		addMetric(metricName, value.divide(new BigInteger("1042")));
 	}
 	
 	private void addRxDroppedMetric(String netInterfaceName) {
@@ -211,7 +211,7 @@ public class NetworkMetricsCollector {
 	private void addTxBytesMetric(String netInterfaceName) {
 		BigInteger value = null;
 
-		String metricName = getFormattedMetricName(Metrics.NIC_TX_BYTES, netInterfaceName);
+		String metricName = getFormattedMetricName(Metrics.NIC_TX_KILOBYTES, netInterfaceName);
 
 		if (isInScriptMetrics(metricName)) {
 			value = scriptMetrics.getMetricValue(metricName);
@@ -220,7 +220,7 @@ public class NetworkMetricsCollector {
 			value = BigInteger.valueOf(sigarMetrics.getNetInterfaceStat(netInterfaceName).getTxBytes());
 		}
 
-		addMetric(metricName, value);
+		addMetric(metricName, value.divide(new BigInteger("1042")));
 	}
 	
 	private void addTxCarrierMetric(String netInterfaceName) {

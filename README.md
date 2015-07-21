@@ -73,20 +73,21 @@ echo "name=TCP|State|Listen,value=" `netstat -an | grep -i LISTEN | wc -l`
 
 ##Metrics
 Metric path is typically: **Application Infrastructure Performance|\<Tier\>|Custom Metrics|Network|** followed by the individual metrics below:
+Metrics value reported is the computed delta value (present value - previous value)
 
 ###Network Interface
 **Note: \<network_interface\> is replaced with the actual network interface name, e.g eth0**
 
 | Metric | Description |
 | ----- | ----- |
-| \<network_interface\>&#124;RX Bytes | The total bytes received |
+| \<network_interface\>&#124;RX KiloBytes | The total kilo bytes received |
 | \<network_interface\>&#124;RX Dropped | The number of dropped packets due to reception errors |
 | \<network_interface\>&#124;RX Errors | The number of damaged packets received |
 | \<network_interface\>&#124;RX Frame | The number received packets that experienced frame errors |
 | \<network_interface\>&#124;RX Overruns | The number of received packets that experienced data overruns |
 | \<network_interface\>&#124;RX Packets | The number of packets received |
 | \<network_interface\>&#124;Speed | The speed in bits per second |
-| \<network_interface\>&#124;TX Bytes | The total bytes transmitted |
+| \<network_interface\>&#124;TX KiloBytes | The total kilo bytes transmitted |
 | \<network_interface\>&#124;TX Carrier | The number received packets that experienced loss of carriers |
 | \<network_interface\>&#124;TX Collision | The number of transmitted packets that experienced Ethernet collisions |
 | \<network_interface\>&#124;TX Dropped | The number of dropped transmitted packets due to transmission errors |
@@ -153,5 +154,5 @@ Always feel free to fork and contribute any changes directly here on GitHub
 
 ##Support
 
-For any questions or feature request, please contact [AppDynamics Center of Excellence](mailto:ace-request@appdynamics.com).
+For any questions or feature request, please contact [AppDynamics Center of Excellence](mailto:help@appdynamics.com).
 

@@ -6,8 +6,12 @@ import static com.appdynamics.extensions.network.util.MetricUtil.resolvePath;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.math.BigInteger;
+import java.util.List;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
+import com.google.common.cache.Cache;
+import com.google.common.cache.CacheBuilder;
 import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 import org.yaml.snakeyaml.Yaml;
@@ -32,7 +36,17 @@ public class NetworkMonitor extends AManagedMonitor {
 	
 	private String metricPrefix;
 
-	public TaskOutput execute(Map<String, String> args,
+    private Cache<String, BigInteger> prevMetricsMap;
+
+    public NetworkMonitor() {
+        String msg = "Using Monitor Version [" + getImplementationVersion() + "]";
+        LOGGER.info(msg);
+        System.out.println(msg);
+
+        prevMetricsMap = CacheBuilder.newBuilder().expireAfterWrite(5, TimeUnit.MINUTES).build();
+    }
+
+    public TaskOutput execute(Map<String, String> args,
 			TaskExecutionContext arg1) throws TaskExecutionException {
 		
 		LOGGER.info("Starting Network Monitoring task");
@@ -118,14 +132,41 @@ public class NetworkMonitor extends AManagedMonitor {
 	
 	private void uploadMetrics(Map<String, BigInteger> metrics) {
 		for (Map.Entry<String, BigInteger> metric : metrics.entrySet()) {
-			printCollectiveObservedCurrent(metricPrefix + metric.getKey(), metric.getValue());
-		}
+			//printCollectiveObservedCurrent(metricPrefix + metric.getKey(), metric.getValue());
+            BigInteger prevValue = processDelta(metricPrefix + metric.getKey(), metric.getValue());
+            if(prevValue != null) {
+                printCollectiveAverageAverage(metricPrefix + metric.getKey(), getDeltaValue(metric.getValue(), prevValue));
+            }
+        }
 	}
+
+    private BigInteger processDelta(String metricName, BigInteger metricValue) {
+        BigInteger prevValue = prevMetricsMap.getIfPresent(metricName);
+        if(metricValue != null) {
+            prevMetricsMap.put(metricName, metricValue);
+        }
+        return prevValue;
+    }
+
+    private BigInteger getDeltaValue(BigInteger currentValue, BigInteger prevValue) {
+        if(currentValue == null) {
+            return prevValue;
+        }
+        return currentValue.subtract(prevValue);
+    }
 	
     private void printCollectiveObservedCurrent(String metricName, BigInteger metricValue) {
         printMetric(metricName, metricValue,
                 MetricWriter.METRIC_AGGREGATION_TYPE_OBSERVATION,
                 MetricWriter.METRIC_TIME_ROLLUP_TYPE_CURRENT,
+                MetricWriter.METRIC_CLUSTER_ROLLUP_TYPE_COLLECTIVE
+        );
+    }
+
+    private void printCollectiveAverageAverage(String metricName, BigInteger metricValue) {
+        printMetric(metricName, metricValue,
+                MetricWriter.METRIC_AGGREGATION_TYPE_AVERAGE,
+                MetricWriter.METRIC_TIME_ROLLUP_TYPE_AVERAGE,
                 MetricWriter.METRIC_CLUSTER_ROLLUP_TYPE_COLLECTIVE
         );
     }
