@@ -11,7 +11,7 @@ This extension only works with standalone machine agent.
 **Note : By default, the Machine agent and AppServer agent can only send a fixed number of metrics to the controller. To change this limit, please follow the instructions mentioned [here](http://docs.appdynamics.com/display/PRO14S/Metrics+Limits).**
 
 ##Installation
-1. Run 'mvn clean install' from network-monitoring-extension directory
+1. To build from source, clone this repository and run 'mvn clean install'. This will produce a NetworkMonitor-VERSION.zip in the target directory. Alternatively, download the latest release archive from Github[https://github.com/Appdynamics/network-monitoring-extension/releases].
 2. Copy and unzip NetworkMonitor.zip from 'target' directory into \<machine_agent_dir\>/monitors/
 3. Edit config.yaml file and provide the required configuration (see Configuration section)
 4. Restart the Machine Agent.
@@ -72,8 +72,8 @@ echo "name=TCP|State|Listen,value=" `netstat -an | grep -i LISTEN | wc -l`
 
 
 ##Metrics
-Metric path is typically: **Application Infrastructure Performance|\<Tier\>|Custom Metrics|Network|** followed by the individual metrics below:
 Metrics value reported is the computed delta value (present value - previous value)
+Metric path is typically: **Application Infrastructure Performance|\<Tier\>|Custom Metrics|Network|** followed by the individual metrics below:
 
 ###Network Interface
 **Note: \<network_interface\> is replaced with the actual network interface name, e.g eth0**
@@ -151,6 +151,10 @@ Metrics value reported is the computed delta value (present value - previous val
 ##Contributing
 
 Always feel free to fork and contribute any changes directly here on GitHub
+
+##Community
+
+Find out more in the AppSphere[http://community.appdynamics.com/t5/eXchange-Community-AppDynamics/Network-Monitoring-Extension/idi-p/9497] community.
 
 ##Support
 
