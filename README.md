@@ -68,7 +68,17 @@ echo "name=TCP|State|Fin Wait1,value=" `netstat -an | grep -i FIN_WAIT_1 | wc -l
 echo "name=TCP|State|Fin Wait2,value=" `netstat -an | grep -i FIN_WAIT_2 | wc -l`
 echo "name=TCP|State|Listen,value=" `netstat -an | grep -i LISTEN | wc -l`
 ...
-~~~~ 
+~~~~
+
+Below is an example override for some custom metric in windows-metric.bat:
+
+~~~
+...
+set cmd="netstat -an | find "192.168.31" /c"
+FOR /F %%i IN (' %cmd% ') DO SET val=%%i
+echo name=Autotrader^|Listen,value=%val%
+...
+~~~
 
 
 ##Metrics
