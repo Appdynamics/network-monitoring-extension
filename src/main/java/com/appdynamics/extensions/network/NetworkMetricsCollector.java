@@ -4,6 +4,7 @@ import static com.appdynamics.extensions.network.util.MetricUtil.*;
 
 import java.math.BigInteger;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 
@@ -47,10 +48,29 @@ public class NetworkMetricsCollector {
 		collectNetInterfaceMetrics();
 		collectTcpMetrics();
 		collectOtherMetrics();
-		
+		collectSrtiptMetrics();
 		return metrics;
 	}
 	
+	private void collectSrtiptMetrics() {
+		Iterator<String> itr= scriptMetrics.getMetrics().keySet().iterator();
+		while(itr.hasNext()){
+			String metricName= itr.next();
+			//TODO: Write Test Cases
+			boolean isSigarOverride = false;
+			for(Metrics sigarMetric : Metrics.values()){
+				if(sigarMetric.getDisplayName().equals(metricName)){
+					isSigarOverride =true;
+					break;
+				}
+			}
+			if(!isSigarOverride){
+				// add script metric if it is not Sigar override.
+				addMetric(metricName, scriptMetrics.getMetricValue(metricName));
+			}
+		}		
+	}
+
 	private void collectNetInterfaceMetrics() {
 		for (String netInterfaceName : networkInterfaces) {
 			addRxBytesMetric(netInterfaceName);
@@ -726,7 +746,7 @@ public class NetworkMetricsCollector {
 		if (isValueNullOrNegative(value)) {
 			debugLog("[%s] value is [%s], defaulting to 0", metricName, value);
 		}
-		
+		debugLog("Adding metric [%s]", metricName);
 		metrics.put(metricName, defaultValueToZeroIfNullOrNegative(value));
 	}
 	
