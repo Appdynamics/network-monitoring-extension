@@ -8,6 +8,7 @@ import java.io.FileNotFoundException;
 import java.math.BigInteger;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 import com.google.common.cache.Cache;
@@ -97,7 +98,7 @@ public class NetworkMonitor extends AManagedMonitor {
 		NetworkMetricsCollector metricsCollector = new NetworkMetricsCollector
 				(sigarMetrics, scriptMetrics, config.getNetworkInterfaces());
 		
-		uploadMetrics(metricsCollector.collectMetrics());
+		uploadMetrics(config,metricsCollector.collectMetrics());
 	}
 	
     private Configuration readConfig(String configFilename) throws FileNotFoundException {
@@ -130,13 +131,19 @@ public class NetworkMonitor extends AManagedMonitor {
     	return config.getScriptTimeoutInSec() > 0 ? config.getScriptTimeoutInSec() : DEFAULT_SCRIPT_TIMEOUT_IN_SEC;
     }
 	
-	private void uploadMetrics(Map<String, BigInteger> metrics) {
+	private void uploadMetrics(Configuration config,Map<String, BigInteger> metrics) {
+		Set<String> ignoreDeltaMetrics = config.getIgnoreMetricsDelta();
 		for (Map.Entry<String, BigInteger> metric : metrics.entrySet()) {
 			//printCollectiveObservedCurrent(metricPrefix + metric.getKey(), metric.getValue());
-            BigInteger prevValue = processDelta(metricPrefix + metric.getKey(), metric.getValue());
-            if(prevValue != null) {
-                printCollectiveAverageAverage(metricPrefix + metric.getKey(), getDeltaValue(metric.getValue(), prevValue));
-            }
+			if(ignoreDeltaMetrics.contains(metric.getKey())){
+				printCollectiveAverageAverage(metricPrefix + metric.getKey(), metric.getValue());
+			}
+			else {
+				BigInteger prevValue = processDelta(metricPrefix + metric.getKey(), metric.getValue());
+				if (prevValue != null) {
+					printCollectiveAverageAverage(metricPrefix + metric.getKey(), getDeltaValue(metric.getValue(), prevValue));
+				}
+			}
         }
 	}
 

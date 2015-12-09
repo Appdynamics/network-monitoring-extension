@@ -5,6 +5,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import com.google.common.collect.Sets;
 import org.apache.commons.lang.StringUtils;
 
 public class Configuration {
@@ -18,6 +19,8 @@ public class Configuration {
 	private List<ScriptFile> scriptFiles;
 	
 	private int scriptTimeoutInSec;
+
+	private Set<String> ignoreMetricsDelta;
 	
 	public String getMetricPrefix() {
 		return metricPrefix;
@@ -77,5 +80,15 @@ public class Configuration {
 	public void setScriptTimeoutInSec(int scriptTimeoutInSec) {
 		this.scriptTimeoutInSec = scriptTimeoutInSec;
 	}
-	
+
+	public Set<String> getIgnoreMetricsDelta() {
+		if(ignoreMetricsDelta == null){
+			ignoreMetricsDelta = Sets.newHashSet();
+		}
+		return ignoreMetricsDelta;
+	}
+
+	public void setIgnoreMetricsDelta(Set<String> ignoreMetricsDelta) {
+		this.ignoreMetricsDelta = ignoreMetricsDelta;
+	}
 }
