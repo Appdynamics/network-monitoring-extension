@@ -27,6 +27,7 @@ This extension only works with standalone machine agent.
 | scriptTimeoutInSec | The timeout in seconds of script execution.|
 | scriptFiles (osType) | Type of OS: It's either '**windows**' for Windows or '**unixBase**' for other OS such as Linux, MAC, Solaris, etc.|
 | scriptFiles (filePath) | The path of the script file. Either provide a relative path from the machine agent's installation dir or an absolute path. Two script templates are provided, one for each osType.|
+| deltaMetrics | Comma separated full path of the metrics for which delta (present - previous) needs to be computed |
 | metricPrefix | The path prefix for viewing metrics in the metric browser. Default is "Custom Metrics&#124;Network&#124;"|
 
 **Below is an example config for monitoring multiple interfaces with enabled metrics scripting override:**
@@ -44,6 +45,10 @@ scriptFiles:
     filePath: monitors/NetworkMonitor/scripts/windows-metrics.bat
   - osType: unixBase
     filePath: monitors/NetworkMonitor/scripts/unix-base-metrics.sh
+
+# Comma separated full path of the metrics for which delta (present - previous) needs to be computed.
+# For eg. deltaMetrics: ["TCP|State|Bound", "TCP|Segments Retransmitted"]
+deltaMetrics: []
 
 metricPrefix:  "Custom Metrics|Network|"
 ~~~~

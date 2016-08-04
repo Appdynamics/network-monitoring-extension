@@ -2,7 +2,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.appdynamics.extension</groupId>
   <artifactId>network-monitoring-extension</artifactId>
-  <version>1.0.3</version>
+  <version>1.0.4</version>
   
     <properties>
     	<sigar.version>1.6.3.82</sigar.version>

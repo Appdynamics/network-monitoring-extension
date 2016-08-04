@@ -12,9 +12,9 @@ scriptFiles:
     filePath: monitors/NetworkMonitor/scripts/unix-base-metrics.sh
 
 
-# Add metrics to the ignoreMetricsDelta to ignore delta calculations for certain metrics.
-# For eg. ignoreMetricsDelta: ["TCP|State|Bound","TCP|Segments Retransmitted"]
-ignoreMetricsDelta: []
+# Comma separated full path of the metrics for which delta (present - previous) needs to be computed.
+# For eg. deltaMetrics: ["TCP|State|Bound", "TCP|Segments Retransmitted"]
+deltaMetrics: []
 
 metricPrefix:  "Custom Metrics|Network|"
 

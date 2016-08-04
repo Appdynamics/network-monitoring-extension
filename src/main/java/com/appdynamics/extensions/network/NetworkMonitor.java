@@ -1,29 +1,28 @@
 package com.appdynamics.extensions.network;
 
-import static com.appdynamics.extensions.network.NetworkConstants.*;
-import static com.appdynamics.extensions.network.util.MetricUtil.resolvePath;
-
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.math.BigInteger;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import java.util.concurrent.TimeUnit;
-
+import com.appdynamics.extensions.network.config.Configuration;
 import com.google.common.cache.Cache;
 import com.google.common.cache.CacheBuilder;
-import org.apache.commons.lang.StringUtils;
-import org.apache.log4j.Logger;
-import org.yaml.snakeyaml.Yaml;
-import org.yaml.snakeyaml.constructor.Constructor;
-
-import com.appdynamics.extensions.network.config.Configuration;
 import com.singularity.ee.agent.systemagent.api.AManagedMonitor;
 import com.singularity.ee.agent.systemagent.api.MetricWriter;
 import com.singularity.ee.agent.systemagent.api.TaskExecutionContext;
 import com.singularity.ee.agent.systemagent.api.TaskOutput;
 import com.singularity.ee.agent.systemagent.api.exception.TaskExecutionException;
+import org.apache.commons.lang.StringUtils;
+import org.apache.log4j.Logger;
+import org.yaml.snakeyaml.Yaml;
+import org.yaml.snakeyaml.constructor.Constructor;
+
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.math.BigInteger;
+import java.util.Arrays;
+import java.util.Map;
+import java.util.Set;
+import java.util.concurrent.TimeUnit;
+
+import static com.appdynamics.extensions.network.NetworkConstants.*;
+import static com.appdynamics.extensions.network.util.MetricUtil.resolvePath;
 
 /**
  * Monitors network related metrics
@@ -132,17 +131,18 @@ public class NetworkMonitor extends AManagedMonitor {
     }
 	
 	private void uploadMetrics(Configuration config,Map<String, BigInteger> metrics) {
-		Set<String> ignoreDeltaMetrics = config.getIgnoreMetricsDelta();
+		Set<String> deltaMetrics = config.getDeltaMetrics();
+		LOGGER.debug("Delta metrics configured for " + Arrays.toString(deltaMetrics.toArray()));
 		for (Map.Entry<String, BigInteger> metric : metrics.entrySet()) {
-			//printCollectiveObservedCurrent(metricPrefix + metric.getKey(), metric.getValue());
-			if(ignoreDeltaMetrics.contains(metric.getKey())){
-				printCollectiveAverageAverage(metricPrefix + metric.getKey(), metric.getValue());
-			}
-			else {
+			if(deltaMetrics.contains(metric.getKey())){
+				LOGGER.debug("Computing delta for metric " + metric.getKey());
 				BigInteger prevValue = processDelta(metricPrefix + metric.getKey(), metric.getValue());
 				if (prevValue != null) {
 					printCollectiveAverageAverage(metricPrefix + metric.getKey(), getDeltaValue(metric.getValue(), prevValue));
 				}
+			}
+			else {
+				printCollectiveAverageAverage(metricPrefix + metric.getKey(), metric.getValue());
 			}
         }
 	}

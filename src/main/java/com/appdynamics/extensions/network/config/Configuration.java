@@ -20,7 +20,7 @@ public class Configuration {
 	
 	private int scriptTimeoutInSec;
 
-	private Set<String> ignoreMetricsDelta;
+	private Set<String> deltaMetrics;
 	
 	public String getMetricPrefix() {
 		return metricPrefix;
@@ -81,14 +81,14 @@ public class Configuration {
 		this.scriptTimeoutInSec = scriptTimeoutInSec;
 	}
 
-	public Set<String> getIgnoreMetricsDelta() {
-		if(ignoreMetricsDelta == null){
-			ignoreMetricsDelta = Sets.newHashSet();
+	public Set<String> getDeltaMetrics() {
+		if(deltaMetrics == null){
+			deltaMetrics = Sets.newHashSet();
 		}
-		return ignoreMetricsDelta;
+		return deltaMetrics;
 	}
 
-	public void setIgnoreMetricsDelta(Set<String> ignoreMetricsDelta) {
-		this.ignoreMetricsDelta = ignoreMetricsDelta;
+	public void setDeltaMetrics(Set<String> deltaMetrics) {
+		this.deltaMetrics = deltaMetrics;
 	}
 }

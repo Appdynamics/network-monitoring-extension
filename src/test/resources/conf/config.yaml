@@ -11,9 +11,9 @@ scriptFiles:
   - osType: unixBase
     filePath: target/test-classes/scripts/unix-base-metrics.sh
 
-# Add metrics to the ignoreMetricsDelta to ignore delta calculations for certain metrics.
-# For eg. ignoreMetricsDelta: ["TCP|State|Bound","TCP|Segments Retransmitted"]
-ignoreMetricsDelta: []
+# Add metrics to the deltaMetrics to compute delta for certain metrics.
+# For eg. deltaMetrics: ["TCP|State|Bound","TCP|Segments Retransmitted"]
+deltaMetrics: []
 
 metricPrefix:  "Custom Metrics|Network|"
 
