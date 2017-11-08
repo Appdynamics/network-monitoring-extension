@@ -1,6 +1,6 @@
 package com.appdynamics.extensions.network;
 
-import static com.appdynamics.extensions.network.util.MetricUtil.*;
+import org.apache.log4j.Logger;
 
 import java.math.BigInteger;
 import java.util.HashMap;
@@ -8,7 +8,8 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 
-import org.apache.log4j.Logger;
+import static com.appdynamics.extensions.network.util.MetricUtil.defaultValueToZeroIfNullOrNegative;
+import static com.appdynamics.extensions.network.util.MetricUtil.isValueNullOrNegative;
 
 /**
  * Collects network metrics in this order: 
@@ -22,7 +23,7 @@ import org.apache.log4j.Logger;
  */
 public class NetworkMetricsCollector {
 	
-	public static final Logger LOGGER = Logger.getLogger("com.singularity.extensions.network.NetworkMetricsCollector");
+	public static final Logger LOGGER = Logger.getLogger(NetworkMetricsCollector.class);
 	
 	private Map<String, BigInteger> metrics = new HashMap<String, BigInteger>();
 	

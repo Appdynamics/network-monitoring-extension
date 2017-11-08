@@ -1,12 +1,12 @@
 package com.appdynamics.extensions.network.config;
 
+import com.google.common.collect.Sets;
+import org.apache.commons.lang.StringUtils;
+
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-
-import com.google.common.collect.Sets;
-import org.apache.commons.lang.StringUtils;
 
 public class Configuration {
 	
@@ -50,19 +50,7 @@ public class Configuration {
 	}
 
 	public void setNetworkInterfaces(Set<String> networkInterfaces) {
-		Set<String> tmpNetworkInterfaces = null;
-		
-		if (networkInterfaces != null) {
-			tmpNetworkInterfaces = new HashSet<String>();
-			
-			for (String networkInterface : networkInterfaces) {
-				if (StringUtils.isNotBlank(networkInterface)) {
-					tmpNetworkInterfaces.add(networkInterface.trim().toLowerCase());
-				}
-			}
-		}
-		
-		this.networkInterfaces = tmpNetworkInterfaces;
+		this.networkInterfaces = networkInterfaces;
 	}
 
 	public List<ScriptFile> getScriptFiles() {

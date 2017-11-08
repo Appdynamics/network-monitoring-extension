@@ -1,5 +1,9 @@
+# In case of linux, networkInterface names are of the form eth*
+# In Windows, please use the network full name from Device Manager
 networkInterfaces: [
 ]
+
+
 
 overrideMetricsUsingScriptFile: false
 

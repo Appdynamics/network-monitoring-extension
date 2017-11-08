@@ -1,15 +1,12 @@
 package com.appdynamics.extensions.network;
 
+import com.google.common.collect.Maps;
+import org.apache.log4j.Logger;
+import org.hyperic.sigar.*;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
-
-import org.apache.log4j.Logger;
-import org.hyperic.sigar.NetInterfaceStat;
-import org.hyperic.sigar.NetStat;
-import org.hyperic.sigar.Sigar;
-import org.hyperic.sigar.SigarException;
-import org.hyperic.sigar.Tcp;
 
 /**
  * Uses Sigar to fetch network metrics
@@ -19,7 +16,7 @@ import org.hyperic.sigar.Tcp;
  */
 public class SigarMetrics {
 	
-	public static final Logger LOGGER = Logger.getLogger("com.singularity.extensions.network.SigarMetrics");
+	public static final Logger LOGGER = Logger.getLogger(SigarMetrics.class);
 	
 	private Map<String, NetInterfaceStat> netInterfaceMap = new HashMap<String, NetInterfaceStat>();
 	
@@ -47,11 +44,41 @@ public class SigarMetrics {
 	}
 
 	private void initialiseNetInterfaceMap(Sigar sigar, Set<String> networkInterfaces) {
+		Map<String, String> networkInterfaceMapOfDescriptionAndName = logAndPopulateNetInterfaces(sigar);
+		String os = System.getProperty("os.name").toLowerCase();
 		for (String netInterfaceName : networkInterfaces) {
-			netInterfaceMap.put(netInterfaceName, getNetworkInterfaceStat(sigar, netInterfaceName));
+			if (os.contains("win")) {
+				String networkInterfaceActualName = networkInterfaceMapOfDescriptionAndName.get(netInterfaceName);
+				if (networkInterfaceActualName != null) {
+					netInterfaceMap.put(netInterfaceName, getNetworkInterfaceStat(sigar, networkInterfaceActualName));
+				}
+			} else {
+				netInterfaceMap.put(netInterfaceName, getNetworkInterfaceStat(sigar, netInterfaceName));
+			}
 		}
 	}
-	
+
+	private Map<String, String> logAndPopulateNetInterfaces(Sigar sigar) {
+		//linux: (eth1, eth1)
+		//windows: ("﻿Intel(R) PRO/1000 MT Desktop Adapter", eth6)
+		Map<String, String> networkInterfaceMapOfDescriptionAndName = Maps.newHashMap();
+		try {
+			String [] interfaces = sigar.getNetInterfaceList();
+			for (String networkInterface : interfaces) {
+				NetInterfaceConfig interfaceConfig = sigar.getNetInterfaceConfig(networkInterface);
+				if (interfaceConfig != null) {
+					if (! (NetFlags.isAnyAddress(interfaceConfig.getAddress()) || NetFlags.isLoopback(interfaceConfig.getAddress()))) {
+						LOGGER.debug("Network interface Details - Name:" + interfaceConfig.getName() + " Description:" + interfaceConfig.getDescription() + " Address:" + interfaceConfig.getAddress() + " Type:" + interfaceConfig.getType());
+						networkInterfaceMapOfDescriptionAndName.put(interfaceConfig.getDescription(), interfaceConfig.getName());
+					}
+				}
+			}
+		} catch (SigarException e) {
+			LOGGER.error("Error while trying to fetch Network Interface List using Sigar " + e);
+		}
+		return networkInterfaceMapOfDescriptionAndName;
+	}
+
 	private NetInterfaceStat getNetworkInterfaceStat(Sigar sigar, String netInterfaceName) {
 		NetInterfaceStat netInterfaceStat = null;
 		
@@ -59,7 +86,7 @@ public class SigarMetrics {
 			netInterfaceStat = sigar.getNetInterfaceStat(netInterfaceName);
 			
 		} catch (SigarException ex) {
-			LOGGER.error(String.format("Unable to retrieve network interface stat for %s:", 
+			LOGGER.error(String.format("Unable to retrieve network interface stat for %s:",
 					netInterfaceName), ex);
 			
 		} catch (UnsatisfiedLinkError err) {

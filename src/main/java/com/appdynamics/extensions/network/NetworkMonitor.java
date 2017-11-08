@@ -32,16 +32,14 @@ import static com.appdynamics.extensions.network.util.MetricUtil.resolvePath;
  */
 public class NetworkMonitor extends AManagedMonitor {
 	
-	public static final Logger LOGGER = Logger.getLogger("com.singularity.extensions.network.NetworkMonitor");
+	public static final Logger LOGGER = Logger.getLogger(NetworkMonitor.class);
 	
 	private String metricPrefix;
 
     private Cache<String, BigInteger> prevMetricsMap;
 
     public NetworkMonitor() {
-        String msg = "Using Monitor Version [" + getImplementationVersion() + "]";
-        LOGGER.info(msg);
-        System.out.println(msg);
+        System.out.println(logVersion());
 
         prevMetricsMap = CacheBuilder.newBuilder().expireAfterWrite(5, TimeUnit.MINUTES).build();
     }
@@ -49,8 +47,7 @@ public class NetworkMonitor extends AManagedMonitor {
     public TaskOutput execute(Map<String, String> args,
 			TaskExecutionContext arg1) throws TaskExecutionException {
 		
-		LOGGER.info("Starting Network Monitoring task");
-		debugLog("Args received were: %s", args);
+		LOGGER.info(logVersion());
 		
 		if (args != null) {
 			
@@ -201,6 +198,12 @@ public class NetworkMonitor extends AManagedMonitor {
 			
 			LOGGER.debug(msgToPrint);
 		}
+	}
+
+	private String logVersion() {
+		String msg = "Using Monitor Version [" + getImplementationVersion() + "]";
+		LOGGER.info(msg);
+		return msg;
 	}
 	
     public static String getImplementationVersion(){

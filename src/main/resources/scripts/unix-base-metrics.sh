@@ -29,7 +29,7 @@
 ############################################################################
 #TCP metrics
 ############################################################################
-#echo "name=TCP|Active Opens,value="
+echo "name=TCP|Active Opens,value="netstat -np TCP | grep "ESTABLISHED" | wc -l
 #echo "name=TCP|Attempt Fails,value="
 #echo "name=TCP|Conn Established,value="
 #echo "name=TCP|Resets Received,value="
