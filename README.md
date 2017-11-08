@@ -33,7 +33,9 @@ This extension only works with standalone machine agent.
 **Below is an example config for monitoring multiple interfaces with enabled metrics scripting override:**
 
 ~~~~
-networkInterfaces: [ eth0, eth1
+# Linux:, networkInterfaces are of the form eth*
+# Windows: Please use the network interface full name from Device Manager (﻿Intel(R) PRO/1000 MT Desktop Adapter)
+networkInterfaces: [ "eth0", "﻿Intel(R) PRO/1000 MT Desktop Adapter"
 ]
 
 overrideMetricsUsingScriptFile: true
