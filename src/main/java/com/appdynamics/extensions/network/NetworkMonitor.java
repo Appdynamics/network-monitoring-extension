@@ -202,7 +202,6 @@ public class NetworkMonitor extends AManagedMonitor {
 
 	private String logVersion() {
 		String msg = "Using Monitor Version [" + getImplementationVersion() + "]";
-		LOGGER.info(msg);
 		return msg;
 	}
 	
