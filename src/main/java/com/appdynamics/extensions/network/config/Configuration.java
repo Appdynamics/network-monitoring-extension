@@ -7,11 +7,10 @@
 
 package com.appdynamics.extensions.network.config;
 
+import com.google.common.base.Strings;
 import com.google.common.collect.Sets;
-import org.apache.commons.lang.StringUtils;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -34,7 +33,7 @@ public class Configuration {
 	}
 
 	public void setMetricPrefix(String metricPrefix) {
-		if (StringUtils.isNotBlank(metricPrefix)) {
+		if (!Strings.isNullOrEmpty(metricPrefix)) {
 			this.metricPrefix = metricPrefix.trim();
 			
 		} else {

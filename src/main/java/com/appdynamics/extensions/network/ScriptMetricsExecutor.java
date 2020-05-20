@@ -7,32 +7,22 @@
 
 package com.appdynamics.extensions.network;
 
-import static com.appdynamics.extensions.network.NetworkConstants.*;
-import static com.appdynamics.extensions.network.util.MetricUtil.*;
-
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.math.BigInteger;
-import java.util.List;
-import java.util.concurrent.Callable;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.Future;
-import java.util.concurrent.FutureTask;
-import java.util.concurrent.TimeUnit;
-import java.util.concurrent.TimeoutException;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
-import org.apache.log4j.Logger;
-
+import com.appdynamics.extensions.logging.ExtensionsLoggerFactory;
 import com.appdynamics.extensions.network.config.ScriptFile;
 import com.appdynamics.extensions.network.exception.ScriptNotExecutableException;
 import com.appdynamics.extensions.network.exception.ScriptNotFoundException;
+import org.slf4j.Logger;
+
+import java.io.*;
+import java.math.BigInteger;
+import java.util.List;
+import java.util.concurrent.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import static com.appdynamics.extensions.network.NetworkConstants.*;
+import static com.appdynamics.extensions.network.util.MetricUtil.defaultValueToZeroIfNullOrNegative;
+import static com.appdynamics.extensions.network.util.MetricUtil.resolvePath;
 
 /**
  * Executes the appropriate script and retrieves the output metrics
@@ -42,7 +32,7 @@ import com.appdynamics.extensions.network.exception.ScriptNotFoundException;
  */
 public class ScriptMetricsExecutor {
 	
-	public static final Logger LOGGER = Logger.getLogger("com.singularity.extensions.network.ScriptMetricsExecutor");
+	public static final Logger LOGGER = ExtensionsLoggerFactory.getLogger("com.singularity.extensions.network.ScriptMetricsExecutor");
 	
     private ExecutorService inputStreamExecutor;
     private ExecutorService processExecutor;

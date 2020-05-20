@@ -7,23 +7,8 @@
 
 package com.appdynamics.extensions.network;
 
-import static com.appdynamics.extensions.network.Metrics.*;
-import static com.appdynamics.extensions.network.NetworkConstants.METRIC_OUTPUT_PATTERN;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
-import static org.powermock.api.mockito.PowerMockito.mockStatic;
-import static org.powermock.api.mockito.PowerMockito.spy;
-import static org.powermock.api.mockito.PowerMockito.when;
-
-import java.io.File;
-import java.io.InputStream;
-import java.math.BigInteger;
-import java.util.Map;
-import java.util.concurrent.Callable;
-import java.util.regex.Pattern;
-
+import com.appdynamics.extensions.util.PathResolver;
+import com.singularity.ee.agent.systemagent.api.AManagedMonitor;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -32,11 +17,17 @@ import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 import org.powermock.reflect.Whitebox;
 
-import com.appdynamics.extensions.PathResolver;
-import com.appdynamics.extensions.network.Metrics;
-import com.appdynamics.extensions.network.ScriptMetrics;
-import com.appdynamics.extensions.network.ScriptMetricsExecutor;
-import com.singularity.ee.agent.systemagent.api.AManagedMonitor;
+import java.io.File;
+import java.io.InputStream;
+import java.math.BigInteger;
+import java.util.Map;
+import java.util.concurrent.Callable;
+import java.util.regex.Pattern;
+
+import static com.appdynamics.extensions.network.Metrics.*;
+import static com.appdynamics.extensions.network.NetworkConstants.METRIC_OUTPUT_PATTERN;
+import static org.junit.Assert.*;
+import static org.powermock.api.mockito.PowerMockito.*;
 
 @RunWith(PowerMockRunner.class)
 @PrepareForTest({ScriptMetricsExecutor.class, PathResolver.class})

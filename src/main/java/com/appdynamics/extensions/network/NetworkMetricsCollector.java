@@ -7,7 +7,8 @@
 
 package com.appdynamics.extensions.network;
 
-import org.apache.log4j.Logger;
+import com.appdynamics.extensions.logging.ExtensionsLoggerFactory;
+import org.slf4j.Logger;
 
 import java.math.BigInteger;
 import java.util.HashMap;
@@ -30,7 +31,7 @@ import static com.appdynamics.extensions.network.util.MetricUtil.isValueNullOrNe
  */
 public class NetworkMetricsCollector {
 	
-	public static final Logger LOGGER = Logger.getLogger(NetworkMetricsCollector.class);
+	public static final Logger LOGGER = ExtensionsLoggerFactory.getLogger(NetworkMetricsCollector.class);
 	
 	private Map<String, BigInteger> metrics = new HashMap<String, BigInteger>();
 	

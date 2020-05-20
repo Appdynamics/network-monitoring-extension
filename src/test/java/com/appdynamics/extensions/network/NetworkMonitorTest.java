@@ -7,22 +7,11 @@
 
 package com.appdynamics.extensions.network;
 
-import static org.mockito.Matchers.any;
-import static org.mockito.Matchers.anyString;
-import static org.powermock.api.mockito.PowerMockito.*;
-import static com.appdynamics.extensions.network.Metrics.*;
-import static org.mockito.Matchers.*;
-import static org.mockito.Mockito.never;
-import static org.mockito.Mockito.times;
-
-import java.util.List;
-import java.io.File;
-import java.math.BigInteger;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
-import java.util.concurrent.TimeoutException;
-
+import com.appdynamics.extensions.util.PathResolver;
+import com.google.common.collect.Maps;
+import com.singularity.ee.agent.systemagent.api.AManagedMonitor;
+import com.singularity.ee.agent.systemagent.api.MetricWriter;
+import com.singularity.ee.agent.systemagent.api.exception.TaskExecutionException;
 import org.hyperic.sigar.NetInterfaceStat;
 import org.hyperic.sigar.NetStat;
 import org.hyperic.sigar.Tcp;
@@ -34,12 +23,19 @@ import org.powermock.core.classloader.annotations.PowerMockIgnore;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 
-import com.appdynamics.extensions.PathResolver;
-import com.appdynamics.extensions.network.NetworkMonitor;
-import com.google.common.collect.Maps;
-import com.singularity.ee.agent.systemagent.api.AManagedMonitor;
-import com.singularity.ee.agent.systemagent.api.MetricWriter;
-import com.singularity.ee.agent.systemagent.api.exception.TaskExecutionException;
+import java.io.File;
+import java.math.BigInteger;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.concurrent.TimeoutException;
+
+import static com.appdynamics.extensions.network.Metrics.*;
+import static org.mockito.Matchers.*;
+import static org.mockito.Mockito.never;
+import static org.mockito.Mockito.times;
+import static org.powermock.api.mockito.PowerMockito.*;
 
 @RunWith(PowerMockRunner.class)
 @PrepareForTest({NetworkMonitor.class, PathResolver.class})
@@ -78,7 +74,7 @@ public class NetworkMonitorTest {
 	@Test(expected=TaskExecutionException.class)
 	public void testWithNonExistentConfigFile() throws TaskExecutionException {
 		Map<String, String> args = Maps.newHashMap();
-		args.put("config-file","src/test/resources/conf/no_config.yaml");
+		args.put("config-file","src/test/resources/conf/no_config.yml");
 		
 		classUnderTest.execute(args, null);
 	}
@@ -86,7 +82,7 @@ public class NetworkMonitorTest {
 	@Test(expected=TaskExecutionException.class)
 	public void testWithInvalidConfigFile() throws TaskExecutionException {
 		Map<String, String> args = Maps.newHashMap();
-		args.put("config-file","src/test/resources/conf/invalid_config.yaml");
+		args.put("config-file","src/test/resources/conf/invalid_config.yml");
 		
 		classUnderTest.execute(args, null);		
 	}
@@ -106,7 +102,7 @@ public class NetworkMonitorTest {
 			.thenThrow(new TimeoutException());
 		
 		Map<String, String> args = Maps.newHashMap();
-		args.put("config-file","src/test/resources/conf/config_script_override.yaml");
+		args.put("config-file","src/test/resources/conf/config_script_override.yml");
 		
 		classUnderTest.execute(args, null);
 		
@@ -167,7 +163,7 @@ public class NetworkMonitorTest {
 		whenNew(ScriptMetricsExecutor.class).withNoArguments().thenReturn(mockScriptMetricsCollector);
 		
 		Map<String, String> args = Maps.newHashMap();
-		args.put("config-file","src/test/resources/conf/config.yaml");
+		args.put("config-file","src/test/resources/conf/config.yml");
 		
 		classUnderTest.execute(args, null);
 		
@@ -231,7 +227,7 @@ public class NetworkMonitorTest {
 				.thenReturn(getScriptMetricsWithPartialMetrics());
 		
 		Map<String, String> args = Maps.newHashMap();
-		args.put("config-file","src/test/resources/conf/config_script_override.yaml");
+		args.put("config-file","src/test/resources/conf/config_script_override.yml");
 		
 		classUnderTest.execute(args, null);
 		
@@ -295,7 +291,7 @@ public class NetworkMonitorTest {
 				.thenReturn(getScriptMetricsWithFullMetrics());
 		
 		Map<String, String> args = Maps.newHashMap();
-		args.put("config-file","src/test/resources/conf/config_script_override.yaml");
+		args.put("config-file","src/test/resources/conf/config_script_override.yml");
 		
 		classUnderTest.execute(args, null);
 		

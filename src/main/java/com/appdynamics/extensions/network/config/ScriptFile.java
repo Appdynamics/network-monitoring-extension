@@ -7,7 +7,7 @@
 
 package com.appdynamics.extensions.network.config;
 
-import org.apache.commons.lang.StringUtils;
+import com.google.common.base.Strings;
 
 public class ScriptFile {
 	
@@ -20,7 +20,7 @@ public class ScriptFile {
 	}
 
 	public void setOsType(String osType) {
-		if (StringUtils.isNotBlank(osType)) {
+		if (!Strings.isNullOrEmpty(osType)) {
 			this.osType = osType.trim();
 		} else {
 			this.osType = null;
@@ -32,7 +32,7 @@ public class ScriptFile {
 	}
 
 	public void setFilePath(String filePath) {
-		if (StringUtils.isNotBlank(filePath)) {
+		if (!Strings.isNullOrEmpty(filePath)) {
 			this.filePath = filePath.trim();
 		} else {
 			this.filePath = null;

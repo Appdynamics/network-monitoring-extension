@@ -7,7 +7,9 @@
 
 package com.appdynamics.extensions.network;
 
+import com.appdynamics.extensions.logging.ExtensionsLoggerFactory;
 import com.appdynamics.extensions.network.config.Configuration;
+import com.google.common.base.Strings;
 import com.google.common.cache.Cache;
 import com.google.common.cache.CacheBuilder;
 import com.singularity.ee.agent.systemagent.api.AManagedMonitor;
@@ -15,8 +17,7 @@ import com.singularity.ee.agent.systemagent.api.MetricWriter;
 import com.singularity.ee.agent.systemagent.api.TaskExecutionContext;
 import com.singularity.ee.agent.systemagent.api.TaskOutput;
 import com.singularity.ee.agent.systemagent.api.exception.TaskExecutionException;
-import org.apache.commons.lang.StringUtils;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
 import org.yaml.snakeyaml.Yaml;
 import org.yaml.snakeyaml.constructor.Constructor;
 
@@ -39,7 +40,7 @@ import static com.appdynamics.extensions.network.util.MetricUtil.resolvePath;
  */
 public class NetworkMonitor extends AManagedMonitor {
 	
-	public static final Logger LOGGER = Logger.getLogger(NetworkMonitor.class);
+	public static final Logger LOGGER = ExtensionsLoggerFactory.getLogger(NetworkMonitor.class);
 	
 	private String metricPrefix;
 
@@ -82,7 +83,7 @@ public class NetworkMonitor extends AManagedMonitor {
 	private void setMetricPrefix(Configuration config) {
 		metricPrefix = config.getMetricPrefix();
 		
-		if (StringUtils.isBlank(metricPrefix)) {
+		if (Strings.isNullOrEmpty(metricPrefix)) {
 			metricPrefix = DEFAULT_METRIC_PREFIX;
 			
 		} else {
