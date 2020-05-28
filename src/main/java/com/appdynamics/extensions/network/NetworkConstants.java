@@ -13,7 +13,7 @@ package com.appdynamics.extensions.network;
  */
 public class NetworkConstants {
 
-	public static final String DEFAULT_METRIC_PREFIX = "Custom Metrics|Network|";
+	public static final String DEFAULT_METRIC_PREFIX = "Custom Metrics|Network";
 	
 	public static final String DEFAULT_DELIMETER = "|";
 	

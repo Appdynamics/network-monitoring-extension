@@ -27,3 +27,5 @@ metricPrefix:  "Custom Metrics|Network|"
 
 metricPrefix: "Server|Component:<COMPONENT_ID>|Custom Metrics|Network|"
 
+numberOfThreads: 2
+
