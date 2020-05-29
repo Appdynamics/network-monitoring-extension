@@ -1,8 +1,8 @@
+metricPrefix: "Server|Component:<COMPONENT_ID>|Custom Metrics|Network|"
+
 # In case of linux, networkInterface names are of the form eth*
 # In Windows, please use the network full name from Device Manager
-networkInterfaces: [
-]
-
+networkInterfaces: [ ]
 
 overrideMetricsUsingScriptFile: false
 
@@ -13,19 +13,6 @@ scriptFiles:
     filePath: monitors/NetworkMonitor/scripts/windows-metrics.bat
   - osType: unixBase
     filePath: monitors/NetworkMonitor/scripts/unix-base-metrics.sh
-
-
-# Comma separated full path of the metrics for which delta (present - previous) needs to be computed.
-# For eg. deltaMetrics: ["TCP|State|Bound", "TCP|Segments Retransmitted"]
-deltaMetrics: []
-
-metricPrefix:  "Custom Metrics|Network|"
-
-#This will create it in specific Tier/Component. Make sure to replace <COMPONENT_ID> with the appropriate one
-#from your environment. To find the <COMPONENT_ID> in your environment, please follow the screenshot in
-#https://docs.appdynamics.com/display/PRO42/Build+a+Monitoring+Extension+Using+Java
-
-metricPrefix: "Server|Component:<COMPONENT_ID>|Custom Metrics|Network|"
 
 numberOfThreads: 2
 

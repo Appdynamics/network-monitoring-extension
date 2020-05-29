@@ -163,6 +163,7 @@
 									<fileset dir="src/main/resources/conf" includes="monitor.xml" />
 									<fileset dir="src/main/resources/conf" includes="config.yml" />
 									<fileset dir="src/main/resources" includes="scripts/**" />
+									<fileset dir="src/main/resources/conf" includes="metrics.xml" />
 								</copy>
 								<copy todir="${target.dir}">
 									<fileset dir="${project.build.directory}"

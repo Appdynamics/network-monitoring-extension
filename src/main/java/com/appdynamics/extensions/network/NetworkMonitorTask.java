@@ -6,10 +6,9 @@ import com.appdynamics.extensions.conf.MonitorContextConfiguration;
 import com.appdynamics.extensions.logging.ExtensionsLoggerFactory;
 import com.appdynamics.extensions.metrics.Metric;
 import com.appdynamics.extensions.network.config.ScriptFile;
-import com.google.common.collect.Lists;
+import com.appdynamics.extensions.network.input.Stat;
 import org.slf4j.Logger;
 
-import java.math.BigInteger;
 import java.util.*;
 
 import static com.appdynamics.extensions.network.NetworkConstants.DEFAULT_SCRIPT_TIMEOUT_IN_SEC;
@@ -40,8 +39,10 @@ public class NetworkMonitorTask implements AMonitorTaskRunnable {
         Set<String> networkInterfaces = new HashSet<>((ArrayList<String>)config.get("networkInterfaces"));
         SigarMetrics sigarMetrics = new SigarMetrics(networkInterfaces);
 
+        Stat.Stats statsFromMetricsXml = (Stat.Stats) monitorContextConfiguration.getMetricsXml();
+        String metricPrefix = monitorContextConfiguration.getMetricPrefix();
         NetworkMetricsCollector metricsCollector = new NetworkMetricsCollector
-                (sigarMetrics, scriptMetrics, networkInterfaces);
+                (sigarMetrics, scriptMetrics, networkInterfaces, statsFromMetricsXml, metricPrefix);
 
         uploadMetrics(metricsCollector.collectMetrics());
     }
@@ -70,12 +71,8 @@ public class NetworkMonitorTask implements AMonitorTaskRunnable {
         return scriptTimeout > 0 ? scriptTimeout : DEFAULT_SCRIPT_TIMEOUT_IN_SEC;
     }
 
-    private void uploadMetrics(Map<String, BigInteger> metrics) {
-        List<Metric> finalMetrics = Lists.newArrayList();
-        for (Map.Entry<String, BigInteger> metric : metrics.entrySet()) {
-            Metric metric1 = new Metric(metric.getKey(), String.valueOf(metric.getValue()), monitorContextConfiguration.getMetricPrefix() + "|" + metric.getKey());
-            finalMetrics.add(metric1);
-        }
-        metricWriteHelper.transformAndPrintMetrics(finalMetrics);
+    private void uploadMetrics(List<Metric> metrics) {
+
+        metricWriteHelper.transformAndPrintMetrics(metrics);
     }
 }

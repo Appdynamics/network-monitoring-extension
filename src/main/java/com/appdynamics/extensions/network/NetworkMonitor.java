@@ -10,6 +10,7 @@ package com.appdynamics.extensions.network;
 import com.appdynamics.extensions.ABaseMonitor;
 import com.appdynamics.extensions.TasksExecutionServiceProvider;
 import com.appdynamics.extensions.logging.ExtensionsLoggerFactory;
+import com.appdynamics.extensions.network.input.Stat;
 import com.appdynamics.extensions.util.AssertUtils;
 import org.slf4j.Logger;
 
@@ -53,5 +54,11 @@ public class NetworkMonitor extends ABaseMonitor {
 		anInterface.add(networkInterfaces.get(0));
 		AssertUtils.assertNotNull(anInterface, "The 'networkInterfaces' section in config.yml is not configured");
 		return anInterface;
+	}
+
+	@Override
+	protected void initializeMoreStuff(Map<String, String> args) {
+		LOGGER.info("initializing metric.xml file");
+		this.getContextConfiguration().setMetricXml(args.get("metric-file"), Stat.Stats.class);
 	}
 }
