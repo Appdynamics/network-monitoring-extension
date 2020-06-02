@@ -1,6 +1,6 @@
 # Network Monitoring Extension  
 
-##Use Case
+##  Use Case
 
 Use for monitoring network related metrics.
 
@@ -10,14 +10,14 @@ This extension only works with standalone machine agent.
 
 **Note : By default, the Machine agent and AppServer agent can only send a fixed number of metrics to the controller. To change this limit, please follow the instructions mentioned [here](http://docs.appdynamics.com/display/PRO14S/Metrics+Limits).**
 
-##Installation
+## Installation
 1. To build from source, clone this repository and run 'mvn clean install'. This will produce a NetworkMonitor-VERSION.zip in the target directory. Alternatively, download the latest release archive from [Github](https://github.com/Appdynamics/network-monitoring-extension/releases).
 2. Copy and unzip NetworkMonitor.zip from 'target' directory into \<machine_agent_dir\>/monitors/
-3. Edit config.yaml file and provide the required configuration (see Configuration section)
+3. Edit config.yml file and provide the required configuration (see Configuration section)
 4. Restart the Machine Agent.
 
-##Configuration
-###config.yaml
+## Configuration
+### config.yml
 **Note: Please avoid using tab (\t) when editing yaml files. You may want to validate the yaml file using a [yaml validator](http://yamllint.com/).**
 
 | Param | Description |
@@ -27,8 +27,7 @@ This extension only works with standalone machine agent.
 | scriptTimeoutInSec | The timeout in seconds of script execution.|
 | scriptFiles (osType) | Type of OS: It's either '**windows**' for Windows or '**unixBase**' for other OS such as Linux, MAC, Solaris, etc.|
 | scriptFiles (filePath) | The path of the script file. Either provide a relative path from the machine agent's installation dir or an absolute path. Two script templates are provided, one for each osType.|
-| deltaMetrics | Comma separated full path of the metrics for which delta (present - previous) needs to be computed |
-| metricPrefix | The path prefix for viewing metrics in the metric browser. Default is "Custom Metrics&#124;Network&#124;"|
+| metricPrefix | The path prefix for viewing metrics in the metric browser. |
 
 **Below is an example config for monitoring multiple interfaces with enabled metrics scripting override:**
 
@@ -48,14 +47,10 @@ scriptFiles:
   - osType: unixBase
     filePath: monitors/NetworkMonitor/scripts/unix-base-metrics.sh
 
-# Comma separated full path of the metrics for which delta (present - previous) needs to be computed.
-# For eg. deltaMetrics: ["TCP|State|Bound", "TCP|Segments Retransmitted"]
-deltaMetrics: []
-
 metricPrefix:  "Custom Metrics|Network|"
 ~~~~
 
-###Script File
+### Script File
 There maybe cases where Sigar doesn't work on your environment or you've a preferred way of retrieving the metrics. In any case, you have the flexibility to override some or all metrics using scripting.
 
 There are two script templates provided:
@@ -88,11 +83,11 @@ echo name=Autotrader^|Listen,value=%val%
 ~~~
 
 
-##Metrics
+## Metrics
 Metrics value reported is the computed delta value (present value - previous value)
 Metric path is typically: **Application Infrastructure Performance|\<Tier\>|Custom Metrics|Network|** followed by the individual metrics below:
 
-###Network Interface
+### Network Interface
 **Note: \<network_interface\> is replaced with the actual network interface name, e.g eth0**
 
 | Metric | Description |
@@ -112,7 +107,7 @@ Metric path is typically: **Application Infrastructure Performance|\<Tier\>|Cust
 | \<network_interface\>&#124;TX Overruns | The number of transmitted packets that experienced data overruns |
 | \<network_interface\>&#124;TX Packets | The number of packets transmitted |
 
-###TCP
+### TCP
 | Metric | Description |
 | ----- | ----- |
 | TCP&#124;Active Opens | The number of active opens |
@@ -128,7 +123,7 @@ Metric path is typically: **Application Infrastructure Performance|\<Tier\>|Cust
 | TCP&#124;Passive Opens | The number of passive opens |
 | TCP&#124;Segments Retransmitted | The number of segments retransmitted |
 
-###TCP State
+### TCP State
 | Metric | Description |
 | ----- | ----- |
 | TCP&#124;State&#124;Bound | The number of bound connections |
@@ -145,13 +140,13 @@ Metric path is typically: **Application Infrastructure Performance|\<Tier\>|Cust
 | TCP&#124;State&#124;Syn Sent | The number of waiting for a matching connection request after having sent a connection request |
 | TCP&#124;State&#124;Time Wait | The number of  connections waiting for enough time to pass to be sure the remote TCP received the acknowledgment of its connection termination request|
 
-###Other
+### Other
 | Metric | Description |
 | ----- | ----- |
 | All Inbound Total | Total number of incoming connections |
 | All Outbound Total | Total number of outgoing connections |
 
-##Platform Tested
+## Platform Tested
 
 | Platform | Version |
 | ----- | ----- |
@@ -159,21 +154,21 @@ Metric path is typically: **Application Infrastructure Performance|\<Tier\>|Cust
 | Windows | 7 |
 | Mac OSX | 10.9.1 |
 
-##Agent Compatibility
+## Agent Compatibility
 
 | Version |
 | ----- |
-| 3.7.11+ |
+| 4.5+ |
 
-##Contributing
+## Contributing
 
 Always feel free to fork and contribute any changes directly here on GitHub
 
-##Community
+## Community
 
-Find out more in the [AppSphere](http://community.appdynamics.com/t5/eXchange-Community-AppDynamics/Network-Monitoring-Extension/idi-p/9497) community.
+Find out more in the [AppSphere](https://www.appdynamics.com/community/exchange/extension/network-monitoring-extension/) community.
 
-##Support
+## Support
 
 For any questions or feature request, please contact [AppDynamics Center of Excellence](mailto:help@appdynamics.com).
 

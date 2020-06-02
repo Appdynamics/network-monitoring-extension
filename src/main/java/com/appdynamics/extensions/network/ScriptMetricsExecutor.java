@@ -32,7 +32,7 @@ import static com.appdynamics.extensions.network.util.MetricUtil.resolvePath;
  */
 public class ScriptMetricsExecutor {
 	
-	public static final Logger LOGGER = ExtensionsLoggerFactory.getLogger("com.singularity.extensions.network.ScriptMetricsExecutor");
+	private static final Logger LOGGER = ExtensionsLoggerFactory.getLogger(ScriptMetricsExecutor.class);
 	
     private ExecutorService inputStreamExecutor;
     private ExecutorService processExecutor;

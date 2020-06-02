@@ -1,8 +1,5 @@
 package com.appdynamics.extensions.network.input;
 
-import com.appdynamics.extensions.logging.ExtensionsLoggerFactory;
-import org.slf4j.Logger;
-
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
@@ -10,7 +7,6 @@ import java.math.BigDecimal;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 public class MetricConfig {
-    public static final Logger logger = ExtensionsLoggerFactory.getLogger(MetricConfig.class);
 
     @XmlAttribute
     private String attr;
@@ -26,10 +22,6 @@ public class MetricConfig {
     private String clusterRollUpType;
     @XmlAttribute
     private BigDecimal multiplier;
-
-    public static Logger getLogger() {
-        return logger;
-    }
 
     public String getAttr() {
         return attr;

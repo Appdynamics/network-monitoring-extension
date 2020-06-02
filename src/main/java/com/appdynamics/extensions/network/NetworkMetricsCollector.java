@@ -11,6 +11,7 @@ import com.appdynamics.extensions.logging.ExtensionsLoggerFactory;
 import com.appdynamics.extensions.metrics.Metric;
 import com.appdynamics.extensions.network.input.MetricConfig;
 import com.appdynamics.extensions.network.input.Stat;
+import com.appdynamics.extensions.util.AssertUtils;
 import com.appdynamics.extensions.util.StringUtils;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.collect.Lists;
@@ -18,9 +19,11 @@ import com.google.common.collect.Maps;
 import org.slf4j.Logger;
 
 import java.math.BigInteger;
-import java.util.*;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
-import static com.appdynamics.extensions.network.util.MetricUtil.defaultValueToZeroIfNullOrNegative;
 import static com.appdynamics.extensions.network.util.MetricUtil.isValueNullOrNegative;
 
 /**
@@ -35,7 +38,7 @@ import static com.appdynamics.extensions.network.util.MetricUtil.isValueNullOrNe
  */
 public class NetworkMetricsCollector {
 	
-	public static final Logger LOGGER = ExtensionsLoggerFactory.getLogger(NetworkMetricsCollector.class);
+	private static final Logger LOGGER = ExtensionsLoggerFactory.getLogger(NetworkMetricsCollector.class);
 	
 	private List<Metric> metrics = Lists.newArrayList();
 	
@@ -63,6 +66,7 @@ public class NetworkMetricsCollector {
 	}
 	
 	public List<Metric> collectMetrics() {
+		AssertUtils.assertNotNull(statsFromMetricsXml.getStats(), "The stats section in metrics.xml is not configured");
 		for (Stat stat : statsFromMetricsXml.getStats()) {
 			if (StringUtils.hasText(stat.getName()) && stat.getName().equalsIgnoreCase("networkInterfaceMetrics")) {
 				collectNetInterfaceMetrics(stat.getMetricConfig());
@@ -73,8 +77,6 @@ public class NetworkMetricsCollector {
 				collectOtherMetrics(stat.getMetricConfig());
 			}
 		}
-
-
 		collectSrtiptMetrics();
 		return metrics;
 	}

@@ -24,7 +24,7 @@ import java.util.Set;
  */
 public class SigarMetrics {
 	
-	public static final Logger LOGGER = ExtensionsLoggerFactory.getLogger(SigarMetrics.class);
+	private static final Logger LOGGER = ExtensionsLoggerFactory.getLogger(SigarMetrics.class);
 	
 	private Map<String, NetInterfaceStat> netInterfaceMap = new HashMap<String, NetInterfaceStat>();
 	

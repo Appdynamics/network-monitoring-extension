@@ -28,7 +28,7 @@ import static com.appdynamics.extensions.network.NetworkConstants.DEFAULT_METRIC
  */
 public class NetworkMonitor extends ABaseMonitor {
 	
-	public static final Logger LOGGER = ExtensionsLoggerFactory.getLogger(NetworkMonitor.class);
+	private static final Logger LOGGER = ExtensionsLoggerFactory.getLogger(NetworkMonitor.class);
 
 	@Override
 	protected String getDefaultMetricPrefix() {
@@ -37,7 +37,7 @@ public class NetworkMonitor extends ABaseMonitor {
 
 	@Override
 	public String getMonitorName() {
-		return "Network";
+		return "Network Monitor";
 	}
 
 	@Override
