@@ -7,9 +7,10 @@
 
 package com.appdynamics.extensions.network;
 
+import com.appdynamics.extensions.logging.ExtensionsLoggerFactory;
 import com.google.common.collect.Maps;
-import org.apache.log4j.Logger;
 import org.hyperic.sigar.*;
+import org.slf4j.Logger;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -23,7 +24,7 @@ import java.util.Set;
  */
 public class SigarMetrics {
 	
-	public static final Logger LOGGER = Logger.getLogger(SigarMetrics.class);
+	private static final Logger LOGGER = ExtensionsLoggerFactory.getLogger(SigarMetrics.class);
 	
 	private Map<String, NetInterfaceStat> netInterfaceMap = new HashMap<String, NetInterfaceStat>();
 	

@@ -1,0 +1,40 @@
+#Use the following metricPrefix if SIM is enabled.
+metricPrefix: "Server|Component:<COMPONENT_ID>|Custom Metrics|Network|"
+#Use the following metricPrefix if SIM is not enabled.
+#metricPrefix: "Custom Metrics|Network|"
+
+# In case of linux, networkInterface names are of the form eth*
+# In Windows, please use the network full name from Device Manager
+networkInterfaces: [ ]
+
+overrideMetricsUsingScriptFile: false
+
+scriptTimeoutInSec: 60
+
+scriptFiles:
+  - osType: windows
+    filePath: monitors/NetworkMonitor/scripts/windows-metrics.bat
+  - osType: unixBase
+    filePath: monitors/NetworkMonitor/scripts/unix-base-metrics.sh
+
+numberOfThreads: 2
+
+# Default information needs to be updated
+controllerInfo:
+  controllerHost: "controller"
+  controllerPort: 8080
+  account: "customer1"
+  username: "user1"
+  password: "welcome"
+  encryptedPassword: ""
+  controllerSslEnabled: false
+  enableOrchestration: false
+  uniqueHostId: ""
+  accountAccessKey: ""
+  machinePath: ""
+  simEnabled: true
+  applicationName: ""
+  tierName: ""
+  nodeName: ""
+
+encryptionKey: ""

@@ -1,0 +1,51 @@
+<stats>
+    <stat name="networkInterfaceMetrics">
+        <metric attr="RX KB" multiplier="9.59e-4" aggregationType="AVERAGE" timeRollUpType="AVERAGE" clusterRollUpType="COLLECTIVE"/>
+        <metric attr="RX Dropped" aggregationType="AVERAGE" timeRollUpType="AVERAGE" clusterRollUpType="COLLECTIVE"/>
+        <metric attr="RX Errors" aggregationType="AVERAGE" timeRollUpType="AVERAGE" clusterRollUpType="COLLECTIVE"/>
+        <metric attr="RX Overruns" aggregationType="AVERAGE" timeRollUpType="AVERAGE" clusterRollUpType="COLLECTIVE"/>
+        <metric attr="RX Frame" aggregationType="AVERAGE" timeRollUpType="AVERAGE" clusterRollUpType="COLLECTIVE"/>
+        <metric attr="RX Packets" aggregationType="AVERAGE" timeRollUpType="AVERAGE" clusterRollUpType="COLLECTIVE"/>
+        <metric attr="Speed" aggregationType="AVERAGE" timeRollUpType="AVERAGE" clusterRollUpType="COLLECTIVE"/>
+        <metric attr="TX KB" multiplier="9.59e-4" aggregationType="AVERAGE" timeRollUpType="AVERAGE" clusterRollUpType="COLLECTIVE"/>
+        <metric attr="TX Carrier" aggregationType="AVERAGE" timeRollUpType="AVERAGE" clusterRollUpType="COLLECTIVE"/>
+        <metric attr="TX Collision" aggregationType="AVERAGE" timeRollUpType="AVERAGE" clusterRollUpType="COLLECTIVE"/>
+        <metric attr="TX Dropped" aggregationType="AVERAGE" timeRollUpType="AVERAGE" clusterRollUpType="COLLECTIVE"/>
+        <metric attr="TX Errors" aggregationType="AVERAGE" timeRollUpType="AVERAGE" clusterRollUpType="COLLECTIVE"/>
+        <metric attr="TX Overruns" aggregationType="AVERAGE" timeRollUpType="AVERAGE" clusterRollUpType="COLLECTIVE"/>
+        <metric attr="TX Packets" aggregationType="AVERAGE" timeRollUpType="AVERAGE" clusterRollUpType="COLLECTIVE"/>
+    </stat>
+    <stat name="TCP">
+        <metric attr="Active Opens" aggregationType="AVERAGE" timeRollUpType="AVERAGE" clusterRollUpType="COLLECTIVE"/>
+        <metric attr="Attempt Fails" aggregationType="AVERAGE" timeRollUpType="AVERAGE" clusterRollUpType="COLLECTIVE"/>
+        <metric attr="Conn Established" aggregationType="AVERAGE" timeRollUpType="AVERAGE" clusterRollUpType="COLLECTIVE"/>
+        <metric attr="Resets Received" aggregationType="AVERAGE" timeRollUpType="AVERAGE" clusterRollUpType="COLLECTIVE"/>
+        <metric attr="Bad Segments" aggregationType="AVERAGE" timeRollUpType="AVERAGE" clusterRollUpType="COLLECTIVE"/>
+        <metric attr="Resets Sent" aggregationType="AVERAGE" timeRollUpType="AVERAGE" clusterRollUpType="COLLECTIVE"/>
+        <metric attr="Segments Received" aggregationType="AVERAGE" timeRollUpType="AVERAGE" clusterRollUpType="COLLECTIVE"/>
+        <metric attr="Segments Sent" aggregationType="AVERAGE" timeRollUpType="AVERAGE" clusterRollUpType="COLLECTIVE"/>
+        <metric attr="Passive Opens" aggregationType="AVERAGE" timeRollUpType="AVERAGE" clusterRollUpType="COLLECTIVE"/>
+        <metric attr="Segments Retransmitted" aggregationType="AVERAGE" timeRollUpType="AVERAGE" clusterRollUpType="COLLECTIVE"/>
+        <metric attr="Inbound Total" aggregationType="AVERAGE" timeRollUpType="AVERAGE" clusterRollUpType="COLLECTIVE"/>
+        <metric attr="Outbound Total" aggregationType="AVERAGE" timeRollUpType="AVERAGE" clusterRollUpType="COLLECTIVE"/>
+    </stat>
+    <stat name="TCP|State">
+        <metric attr="Bound" aggregationType="AVERAGE" timeRollUpType="AVERAGE" clusterRollUpType="COLLECTIVE"/>
+        <metric attr="Closed" aggregationType="AVERAGE" timeRollUpType="AVERAGE" clusterRollUpType="COLLECTIVE"/>
+        <metric attr="Close Wait" aggregationType="AVERAGE" timeRollUpType="AVERAGE" clusterRollUpType="COLLECTIVE"/>
+        <metric attr="Closing" aggregationType="AVERAGE" timeRollUpType="AVERAGE" clusterRollUpType="COLLECTIVE"/>
+        <metric attr="Establised" aggregationType="AVERAGE" timeRollUpType="AVERAGE" clusterRollUpType="COLLECTIVE"/>
+        <metric attr="Fin Wait1" aggregationType="AVERAGE" timeRollUpType="AVERAGE" clusterRollUpType="COLLECTIVE"/>
+        <metric attr="Fin Wait2" aggregationType="AVERAGE" timeRollUpType="AVERAGE" clusterRollUpType="COLLECTIVE"/>
+        <metric attr="Idle" aggregationType="AVERAGE" timeRollUpType="AVERAGE" clusterRollUpType="COLLECTIVE"/>
+        <metric attr="Last Ack" aggregationType="AVERAGE" timeRollUpType="AVERAGE" clusterRollUpType="COLLECTIVE"/>
+        <metric attr="Listen" aggregationType="AVERAGE" timeRollUpType="AVERAGE" clusterRollUpType="COLLECTIVE"/>
+        <metric attr="Syn Recv" aggregationType="AVERAGE" timeRollUpType="AVERAGE" clusterRollUpType="COLLECTIVE"/>
+        <metric attr="Syn Sent" aggregationType="AVERAGE" timeRollUpType="AVERAGE" clusterRollUpType="COLLECTIVE"/>
+        <metric attr="Time Wait" aggregationType="AVERAGE" timeRollUpType="AVERAGE" clusterRollUpType="COLLECTIVE"/>
+    </stat>
+    <stat>
+        <metric attr="All Inbound Total" aggregationType="AVERAGE" timeRollUpType="AVERAGE" clusterRollUpType="COLLECTIVE"/>
+        <metric attr="All Outbound Total" aggregationType="AVERAGE" timeRollUpType="AVERAGE" clusterRollUpType="COLLECTIVE"/>
+    </stat>
+</stats>

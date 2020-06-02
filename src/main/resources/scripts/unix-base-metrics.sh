@@ -6,7 +6,7 @@
 
 ############################################################################
 # Network interface metrics
-# replace <network_interface> with the interface name provided in config.yaml
+# replace <network_interface> with the interface name provided in config.yml
 # e.g. echo "name=eth1|RX Bytes,value="
 # To provide metrics for different network interfaces, 
 # copy and paste the relevant metrics for each interface

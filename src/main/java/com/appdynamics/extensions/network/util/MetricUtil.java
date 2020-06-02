@@ -7,18 +7,17 @@
 
 package com.appdynamics.extensions.network.util;
 
+import com.appdynamics.extensions.util.PathResolver;
+import com.google.common.base.Strings;
+import com.singularity.ee.agent.systemagent.api.AManagedMonitor;
+
 import java.io.File;
 import java.math.BigInteger;
-
-import org.apache.commons.lang.StringUtils;
-
-import com.appdynamics.extensions.PathResolver;
-import com.singularity.ee.agent.systemagent.api.AManagedMonitor;
 
 public class MetricUtil {
 	
     public static String resolvePath(String filename) {
-        if(StringUtils.isBlank(filename)){
+        if(Strings.isNullOrEmpty(filename)){
             return "";
         }
         
