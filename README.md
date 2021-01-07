@@ -154,15 +154,19 @@ Metric path is typically: **Application Infrastructure Performance|\<Tier\>|Cust
 | Windows | 7 |
 | Mac OSX | 10.9.1 |
 
-## Agent Compatibility
+## Compatibility
 
-| Version |
-| ----- |
-| 4.5+ |
+| Name                        |  Version                    | 
+| :---------------------------| :---------------------------|
+| Extension Version:          | 2.1                   |
+| Controller Compatibility:   | 4.0 or Later                |
+| Agent Compatibility:   | 4.5.13 or Later                |
+| Last updated On:            | 07/01/2021          |
+| List of changes to this extension| [Change log](https://github.com/Appdynamics/network-monitoring-extension/blob/master/Changelog.md)
 
 ## Contributing
 
-Always feel free to fork and contribute any changes directly here on GitHub
+Always feel free to fork and contribute any changes directly here on [GitHub](https://github.com/Appdynamics/network-monitoring-extension)
 
 ## Community
 

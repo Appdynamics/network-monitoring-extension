@@ -7,6 +7,7 @@ import com.appdynamics.extensions.logging.ExtensionsLoggerFactory;
 import com.appdynamics.extensions.metrics.Metric;
 import com.appdynamics.extensions.network.config.ScriptFile;
 import com.appdynamics.extensions.network.input.Stat;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.collect.Lists;
 import org.slf4j.Logger;
 
@@ -17,7 +18,7 @@ import static com.appdynamics.extensions.network.NetworkConstants.DEFAULT_SCRIPT
 
 public class NetworkMonitorTask implements AMonitorTaskRunnable {
     private static final Logger logger = ExtensionsLoggerFactory.getLogger(NetworkMonitorTask.class);
-
+    ObjectMapper objectMapper = new ObjectMapper();
     private BigInteger heartBeatValue = BigInteger.ZERO;
 
     private MonitorContextConfiguration monitorContextConfiguration;
@@ -70,8 +71,9 @@ public class NetworkMonitorTask implements AMonitorTaskRunnable {
 
             try {
                 ScriptMetricsExecutor scriptMetricsExecutor = new ScriptMetricsExecutor();
+                List<ScriptFile> ScriptFiles = Arrays.asList(objectMapper.convertValue(config.get("scriptFiles"), ScriptFile[].class));
                 scriptMetrics = scriptMetricsExecutor.executeAndCollectScriptMetrics(
-                        (List<ScriptFile>)config.get("scriptFiles"), getScriptTimeout(config));
+                        ScriptFiles, getScriptTimeout(config));
 
             } catch (Exception ex) {
                 logger.error("Unfortunately an error has occurred while fetching metrics from script", ex);
