@@ -10,11 +10,17 @@ This extension only works with standalone machine agent.
 
 **Note : By default, the Machine agent and AppServer agent can only send a fixed number of metrics to the controller. To change this limit, please follow the instructions mentioned [here](http://docs.appdynamics.com/display/PRO14S/Metrics+Limits).**
 
+## Prerequisite
+
+Before the extension is installed, the prerequisites mentioned [here](https://community.appdynamics.com/t5/Knowledge-Base/Extensions-Prerequisites-Guide/ta-p/35213) need to be met. Please do not proceed with the extension installation if the specified prerequisites are not met.
+
 ## Installation
-1. To build from source, clone this repository and run 'mvn clean install'. This will produce a NetworkMonitor-VERSION.zip in the target directory. Alternatively, download the latest release archive from [Github](https://github.com/Appdynamics/network-monitoring-extension/releases).
+1. To build from source, clone this repository and run 'mvn clean install'. This will produce a NetworkMonitor-VERSION.zip in the target directory.
 2. Copy and unzip NetworkMonitor.zip from 'target' directory into \<machine_agent_dir\>/monitors/
 3. Edit config.yml file and provide the required configuration (see Configuration section)
 4. Restart the Machine Agent.
+
+Please place the extension in the "monitors" directory of your Machine Agent installation directory. Do not place the extension in the "extensions" directory of your Machine Agent installation directory.
 
 ## Configuration
 ### config.yml
@@ -146,6 +152,34 @@ Metric path is typically: **Application Infrastructure Performance|\<Tier\>|Cust
 | All Inbound Total | Total number of incoming connections |
 | All Outbound Total | Total number of outgoing connections |
 
+## Extensions Workbench
+Workbench is an inbuilt feature provided with each extension in order to assist you to fine tune the extension setup before you actually deploy it on the controller. Please review the following document on [How to use the Extensions WorkBench](https://community.appdynamics.com/t5/Knowledge-Base/How-do-I-use-the-Extensions-WorkBench/ta-p/30130).
+
+## Troubleshooting
+Please follow the steps listed in this [troubleshooting-document](https://community.appdynamics.com/t5/Knowledge-Base/How-do-I-troubleshoot-missing-custom-metrics-or-extensions/ta-p/28695) in order to troubleshoot your issue. These are a set of common issues that customers might have faced during the installation of the extension. If these don't solve your issue, please follow the last step on the [troubleshooting-document](https://community.appdynamics.com/t5/Knowledge-Base/How-do-I-troubleshoot-missing-custom-metrics-or-extensions/ta-p/28695) to contact the support team.
+
+## Support Tickets
+
+If after going through the [Troubleshooting Document](https://community.appdynamics.com/t5/Knowledge-Base/How-do-I-troubleshoot-missing-custom-metrics-or-extensions/ta-p/28695) you have not been able to get your extension working, please file a ticket with the following information:
+
+1. Stop the running machine agent.
+2. Delete all existing logs under <MachineAgent>/logs.
+3. Please enable debug logging by editing the file <MachineAgent>/conf/logging/log4j.xml. Change the level value of the following <logger> elements to debug.
+    ```
+    <logger name="com.singularity">
+    <logger name="com.appdynamics">
+   ```
+4. Start the machine agent and please let it run for 10 mins. Then zip and upload all the logs in the directory <MachineAgent>/logs/*.
+   Attach the zipped <MachineAgent>/conf/* directory.
+5. Attach the zipped <MachineAgent>/monitors/ExtensionFolderYouAreHavingIssuesWith directory.
+
+For any support related questions, you can also contact help@appdynamics.com.
+
+
+## Contributing
+
+Always feel free to fork and contribute any changes directly here on [GitHub](https://github.com/Appdynamics/network-monitoring-extension)
+
 ## Platform Tested
 
 | Platform | Version |
@@ -154,25 +188,12 @@ Metric path is typically: **Application Infrastructure Performance|\<Tier\>|Cust
 | Windows | 7 |
 | Mac OSX | 10.9.1 |
 
-## Compatibility
+## Version
 
 | Name                        |  Version                    | 
 | :---------------------------| :---------------------------|
 | Extension Version:          | 2.1                   |
-| Controller Compatibility:   | 4.0 or Later                |
+| Controller Compatibility:   | 4.5 or Later                |
 | Agent Compatibility:   | 4.5.13 or Later                |
 | Last updated On:            | 07/01/2021          |
 | List of changes to this extension| [Change log](https://github.com/Appdynamics/network-monitoring-extension/blob/master/Changelog.md)
-
-## Contributing
-
-Always feel free to fork and contribute any changes directly here on [GitHub](https://github.com/Appdynamics/network-monitoring-extension)
-
-## Community
-
-Find out more in the [AppSphere](https://www.appdynamics.com/community/exchange/extension/network-monitoring-extension/) community.
-
-## Support
-
-For any questions or feature request, please contact [AppDynamics Center of Excellence](mailto:help@appdynamics.com).
-
