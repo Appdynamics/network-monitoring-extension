@@ -156,24 +156,11 @@ Metric path is typically: **Application Infrastructure Performance|\<Tier\>|Cust
 Workbench is an inbuilt feature provided with each extension in order to assist you to fine tune the extension setup before you actually deploy it on the controller. Please review the following document on [How to use the Extensions WorkBench](https://community.appdynamics.com/t5/Knowledge-Base/How-do-I-use-the-Extensions-WorkBench/ta-p/30130).
 
 ## Troubleshooting
-Please follow the steps listed in this [troubleshooting-document](https://community.appdynamics.com/t5/Knowledge-Base/How-do-I-troubleshoot-missing-custom-metrics-or-extensions/ta-p/28695) in order to troubleshoot your issue. These are a set of common issues that customers might have faced during the installation of the extension. If these don't solve your issue, please follow the last step on the [troubleshooting-document](https://community.appdynamics.com/t5/Knowledge-Base/How-do-I-troubleshoot-missing-custom-metrics-or-extensions/ta-p/28695) to contact the support team.
+1. Please follow the steps listed in this [troubleshooting-document](https://community.appdynamics.com/t5/Knowledge-Base/How-do-I-troubleshoot-missing-custom-metrics-or-extensions/ta-p/28695) in order to troubleshoot your issue. These are a set of common issues that customers might have faced during the installation of the extension.
 
-## Support Tickets
+2. Verify Machine Agent Data: Please start the Machine Agent without the extension and make sure that it reports data. Verify that the machine agent status is UP and it is reporting Hardware Metrics
 
-If after going through the [Troubleshooting Document](https://community.appdynamics.com/t5/Knowledge-Base/How-do-I-troubleshoot-missing-custom-metrics-or-extensions/ta-p/28695) you have not been able to get your extension working, please file a ticket with the following information:
-
-1. Stop the running machine agent.
-2. Delete all existing logs under <MachineAgent>/logs.
-3. Please enable debug logging by editing the file <MachineAgent>/conf/logging/log4j.xml. Change the level value of the following <logger> elements to debug.
-    ```
-    <logger name="com.singularity">
-    <logger name="com.appdynamics">
-   ```
-4. Start the machine agent and please let it run for 10 mins. Then zip and upload all the logs in the directory <MachineAgent>/logs/*.
-   Attach the zipped <MachineAgent>/conf/* directory.
-5. Attach the zipped <MachineAgent>/monitors/ExtensionFolderYouAreHavingIssuesWith directory.
-
-For any support related questions, you can also contact help@appdynamics.com.
+3. If there is a 'java.lang.NoClassDefFoundError: org/hyperic/sigar/SigarException' in machine-agent.log, please copy all the sigar libraries/dependencies from MachineAgent_Home/lib to MachineAgent_Home/monitorsLibs including sigar.jar and .so files to avoid this error
 
 
 ## Contributing
