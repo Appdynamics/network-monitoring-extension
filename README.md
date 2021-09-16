@@ -8,8 +8,6 @@ It uses the machine agent's Sigar library to retrieve the metrics, however these
 
 This extension only works with standalone machine agent. 
 
-**Note : By default, the Machine agent and AppServer agent can only send a fixed number of metrics to the controller. To change this limit, please follow the instructions mentioned [here](http://docs.appdynamics.com/display/PRO14S/Metrics+Limits).**
-
 ## Prerequisite
 
 Before the extension is installed, the prerequisites mentioned [here](https://community.appdynamics.com/t5/Knowledge-Base/Extensions-Prerequisites-Guide/ta-p/35213) need to be met. Please do not proceed with the extension installation if the specified prerequisites are not met.
@@ -24,7 +22,7 @@ Please place the extension in the "monitors" directory of your Machine Agent ins
 
 ## Configuration
 ### config.yml
-**Note: Please avoid using tab (\t) when editing yaml files. You may want to validate the yaml file using a [yaml validator](http://yamllint.com/).**
+**Note: Please avoid using tab (\t) when editing yaml files. You may want to validate the yaml file using a [yaml validator](https://jsonformatter.org/yaml-validator).**
 
 | Param | Description |
 | ----- | ----- |
@@ -33,7 +31,7 @@ Please place the extension in the "monitors" directory of your Machine Agent ins
 | scriptTimeoutInSec | The timeout in seconds of script execution.|
 | scriptFiles (osType) | Type of OS: It's either '**windows**' for Windows or '**unixBase**' for other OS such as Linux, MAC, Solaris, etc.|
 | scriptFiles (filePath) | The path of the script file. Either provide a relative path from the machine agent's installation dir or an absolute path. Two script templates are provided, one for each osType.|
-| metricPrefix | The path prefix for viewing metrics in the metric browser. |
+| metricPrefix | The path prefix for viewing metrics in the metric browser. More details on metric prefix can be found [here](https://community.appdynamics.com/t5/Knowledge-Base/How-do-I-troubleshoot-missing-custom-metrics-or-extensions/ta-p/28695)|
 
 **Below is an example config for monitoring multiple interfaces with enabled metrics scripting override:**
 
@@ -180,7 +178,7 @@ Always feel free to fork and contribute any changes directly here on [GitHub](ht
 | Name                        |  Version                    | 
 | :---------------------------| :---------------------------|
 | Extension Version:          | 2.1                   |
-| Controller Compatibility:   | 4.5 or Later                |
-| Agent Compatibility:   | 4.5.13 or Later                |
 | Last updated On:            | 07/01/2021          |
-| List of changes to this extension| [Change log](https://github.com/Appdynamics/network-monitoring-extension/blob/master/Changelog.md)
+| Changes list                | [Change log](https://github.com/Appdynamics/network-monitoring-extension/blob/master/Changelog.md)|
+
+**Note**: While extensions are maintained and supported by customers under the open-source licensing model, they interact with agents and Controllers that are subject to [AppDynamics’ maintenance and support policy](https://docs.appdynamics.com/latest/en/product-and-release-announcements/maintenance-support-for-software-versions). Some extensions have been tested with AppDynamics 4.5.13+ artifacts, but you are strongly recommended against using versions that are no longer supported.
