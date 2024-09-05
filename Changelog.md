@@ -1,3 +1,7 @@
+
+## Version 2.2
+1. Updated to appd-exts-commons 2.2.13
+
 ## Version 2.1
 1. Updated to appd-exts-commons 2.2.4
 2. Fixed issue when overrideMetricsUsingScriptFile flag is set to true
